@@ -1164,6 +1164,63 @@
             aiContainer.style.top = `${posY}px`;
         });
     </script>
+    <!-- ZanDKav-AI Widget -->
+<div id="ai-container">
+  <div id="ai-logo">ZanDKav<br>-AI</div>
+</div>
+
+<div id="chat-box">
+  <span class="close-btn">×</span>
+  <div class="ai-title">ZanDKav-AI</div>
+  <p>Halo! Saya asisten virtual Anda.</p>
+</div>
+
+<style>
+  #ai-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    border-radius: 50%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    cursor: move;
+    z-index: 9999 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  #ai-logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.2;
+    color: #4b6cb7;
+    font-weight: bold;
+  }
+  /* CSS lainnya tetap seperti sebelumnya */
+</style>
+
+<script>
+  // Inisialisasi ZanDKav-AI
+  const ai = document.getElementById('ai-container');
+  const chatBox = document.getElementById('chat-box');
+  
+  ai.addEventListener('click', () => {
+    chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+  });
+  
+  // Fungsi drag (sama seperti kode sebelumnya)
+  let isDragging = false;
+  // ... tambahkan kode drag di sini ...
+</script>
 </body>
 </html>
 
