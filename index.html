@@ -960,6 +960,74 @@
             transition: all 0.3s ease;
         }
     </style>
+<script>
+  // Tebak Angka
+  const targetNumber = Math.floor(Math.random() * 10) + 1;
+  function checkGuess() {
+    const guess = parseInt(document.getElementById("guessInput").value);
+    const result = document.getElementById("guessResult");
+    if (guess === targetNumber) {
+      result.textContent = "Benar! 🎉";
+    } else {
+      result.textContent = "Salah, coba lagi.";
+    }
+  }
+
+  // Tebak Warna
+  const colors = ["red", "blue", "green", "yellow"];
+  const colorWords = ["MERAH", "BIRU", "HIJAU", "KUNING"];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  document.getElementById("colorText").style.color = colors[randomIndex];
+  document.getElementById("colorText").textContent = colorWords[randomIndex].toUpperCase();
+
+  function checkColor() {
+    const selected = document.getElementById("colorGuess").value;
+    const result = document.getElementById("colorResult");
+    if (selected === colors[randomIndex]) {
+      result.textContent = "Benar! 👍";
+    } else {
+      result.textContent = "Salah, coba lagi.";
+    }
+  }
+
+  // Kuis Cepat
+  function checkQuiz() {
+    const answer = document.getElementById("quizAnswer").value;
+    const result = document.getElementById("quizResult");
+    if (answer === "Jakarta") {
+      result.textContent = "Benar! 🇮🇩";
+    } else {
+      result.textContent = "Salah, ibu kota Indonesia adalah Jakarta.";
+    }
+  }
+
+  // Click Counter
+  let clickCount = 0;
+  let isCounting = false;
+  function countClick() {
+    if (!isCounting) {
+      isCounting = true;
+      clickCount = 0;
+      document.getElementById("clickResult").textContent = "Klik: 0";
+      let time = 5;
+      document.getElementById("timerDisplay").textContent = "Mulai hitung waktu...";
+      const timer = setInterval(() => {
+        time--;
+        document.getElementById("timerDisplay").textContent = `Sisa waktu: ${time}s`;
+        if (time <= 0) {
+          clearInterval(timer);
+          document.getElementById("timerDisplay").textContent = "Waktu habis!";
+          isCounting = false;
+        }
+      }, 1000);
+    }
+    if (isCounting) {
+      clickCount++;
+      document.getElementById("clickResult").textContent = `Klik: ${clickCount}`;
+    }
+  }
+</script>
+
 </body>
 </html>
 </body>
