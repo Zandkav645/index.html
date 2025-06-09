@@ -1,218 +1,960 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk - ZanDKav</title>
+    <title>ZanDKav - Panel Bot WhatsApp Murah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Gaya Dasar */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+            padding-left: 80px; /* Space for sidebar */
+        }
+        
+        /* TikTok Style Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 30px;
+            width: 100%;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item span {
+            font-size: 12px;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255,255,255,0.1);
+            border-left: 3px solid #3498db;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid #3498db;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #3498db, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            animation: fadeIn 2s ease;
         }
         
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 2rem auto;
+            padding: 0 20px;
         }
         
-        /* Header Katalog */
-        .katalog-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .katalog-header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(to right, #3498db, #003366);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-        
-        .katalog-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Grid Produk 3 Kolom */
-        .produk-grid {
+        .products {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        .produk-card {
+        .product {
             background: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
         }
         
-        .produk-card:hover {
+        .product:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
-        .produk-gambar {
+        .product:nth-child(1) { animation-delay: 0.2s; }
+        .product:nth-child(2) { animation-delay: 0.4s; }
+        .product:nth-child(3) { animation-delay: 0.6s; }
+        .product:nth-child(4) { animation-delay: 0.8s; }
+        .product:nth-child(5) { animation-delay: 1.0s; }
+        
+        .product-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 2px solid #f0f0f0;
         }
         
-        .produk-info {
-            padding: 20px;
+        .product-info {
+            padding: 1.5rem;
         }
         
-        .produk-judul {
+        .product-title {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             color: #1a1a1a;
         }
         
-        .produk-harga {
+        .product-price {
             font-size: 1.5rem;
             font-weight: bold;
             color: #3498db;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
         }
         
-        .produk-deskripsi {
+        .product-description {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             font-size: 0.9rem;
-            line-height: 1.6;
+        }
+        
+        .payment-methods {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .payment-methods h4 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 1rem;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .payment-method i {
+            margin-right: 10px;
+            color: #3498db;
+            font-size: 1.2rem;
         }
         
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             text-align: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
         
-        .btn-beli {
+        .btn-whatsapp {
             background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
             color: white;
             width: 100%;
+            position: relative;
+            overflow: hidden;
         }
         
-        .btn-beli:hover {
+        .btn-whatsapp:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        /* Responsif */
-        @media (max-width: 900px) {
-            .produk-grid {
-                grid-template-columns: repeat(2, 1fr);
+        .btn-whatsapp:active {
+            transform: translateY(0);
+        }
+        
+        .btn-whatsapp::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-whatsapp:hover::after {
+            left: 100%;
+        }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+        }
+        
+        /* TESTIMONI STYLES */
+        .testimoni-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            padding: 60px 20px;
+            margin-top: 50px;
+            color: white;
+            text-align: center;
+        }
+        
+        .testimoni-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #3498db, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .testimoni-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimoni-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .testimoni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .testimoni-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .testimoni-card p {
+            font-style: italic;
+            color: #eee;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .testimoni-card h4 {
+            margin-top: 15px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        @media (max-width: 600px) {
-            .produk-grid {
-                grid-template-columns: 1fr;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+        
+        .description {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #555;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        /* Page Content Styles */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .about-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .about-content h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .home-content {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .home-content h2 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #3498db, #003366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .home-content p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Payment Info in Footer */
+        .payment-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.1);
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .payment-info h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .ask-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="katalog-header">
-            <h1>Katalog Produk Kami</h1>
-            <p>Temukan panel bot WhatsApp berkualitas dengan harga terjangkau. Pilih produk yang sesuai kebutuhan Anda.</p>
-        </div>
+    <!-- TikTok Style Sidebar Navigation -->
+    <div class="sidebar">
+        <a href="#home" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>HOME</span>
+        </a>
+        <a href="#beli" class="nav-item" data-page="beli">
+            <i class="fas fa-shopping-cart"></i>
+            <span>BELI</span>
+        </a>
+        <a href="#tentang" class="nav-item" data-page="tentang">
+            <i class="fas fa-info-circle"></i>
+            <span>TENTANG</span>
+        </a>
+    </div>
+    
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Panel Bot WhatsApp Berkualitas</p>
+            </div>
+        </header>
         
-        <div class="produk-grid">
-            <!-- Produk 1 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/btjd85.jpg" alt="Admin Panel" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Admin Panel</h3>
-                    <div class="produk-harga">Rp 15.000</div>
-                    <p class="produk-deskripsi">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Admin%20Panel%20Rp%2015.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
-                </div>
+        <div class="container">
+            <div class="home-content">
+                <h2>Selamat Datang di ZanDKav</h2>
+                <p>Kami menyediakan panel bot WhatsApp dengan harga terjangkau dan kualitas terbaik. Dengan berbagai fitur lengkap, panel kami akan membantu otomatisasi bisnis dan komunikasi Anda.</p>
+                <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
             </div>
-            
-            <!-- Produk 2 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/ajev1f.jpg" alt="Panel Unlimited" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Panel Unlimited</h3>
-                    <div class="produk-harga">Rp 25.000</div>
-                    <p class="produk-deskripsi">Akses tanpa batas dengan fitur lengkap untuk kebutuhan WhatsApp bisnis Anda.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Panel%20Unlimited%20Rp%2025.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
-                </div>
+        </div>
+    </div>
+    
+    <!-- Beli Page -->
+    <div id="beli-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
             </div>
-            
-            <!-- Produk 3 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/07jffk.jpg" alt="Script Bot WA" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Script Bot WA</h3>
-                    <div class="produk-harga">Rp 50.000</div>
-                    <p class="produk-deskripsi">Script bot WhatsApp premium dengan fitur otomatisasi lengkap untuk bisnis Anda.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Script%20Bot%20WA%20Rp%2050.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
-                </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Produk Kami</p>
             </div>
+        </header>
+        
+        <div class="container">
+            <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
             
-            <!-- Produk 4 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/biiuy5.jpg" alt="Panel Premium" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Panel Premium</h3>
-                    <div class="produk-harga">Rp 35.000</div>
-                    <p class="produk-deskripsi">Panel dengan fitur premium dan support 24 jam untuk kebutuhan profesional.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Panel%20Premium%20Rp%2035.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
+            <div class="products">
+                <div class="product">
+                    <img src="https://files.catbox.moe/btjd85.jpg" alt="Admin Panel" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Admin Panel</h3>
+                        <div class="product-price">Rp 15.000</div>
+                        <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Admin%20Panel%20Rp%2015.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Produk 5 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/3x01e5.jpg" alt="Reseller Package" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Paket Reseller</h3>
-                    <div class="produk-harga">Rp 100.000</div>
-                    <p class="produk-deskripsi">Paket lengkap untuk reseller dengan harga khusus dan keuntungan lebih.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Paket%20Reseller%20Rp%20100.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/ajev1f.jpg" alt="Panel Unli" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Panel Unli</h3>
+                        <div class="product-price">Rp 5.000</div>
+                        <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Unli%20Rp%205.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Produk 6 -->
-            <div class="produk-card">
-                <img src="https://files.catbox.moe/nn35z4.jpg" alt="Custom Bot" class="produk-gambar">
-                <div class="produk-info">
-                    <h3 class="produk-judul">Bot Custom</h3>
-                    <div class="produk-harga">Rp 150.000</div>
-                    <p class="produk-deskripsi">Bot WhatsApp custom dibuat sesuai kebutuhan spesifik bisnis Anda.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20Bot%20Custom%20Rp%20150.000" class="btn btn-beli">
-                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-                    </a>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/07jffk.jpg" alt="Script Bot WA" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Script Bot WA</h3>
+                        <div class="product-price">Rp -</div>
+                        <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Script%20Bot%20WA" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/btjd85.jpg" alt="Reseller Panel" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Reseller Panel</h3>
+                        <div class="product-price">Rp 7.000</div>
+                        <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Reseller%20Panel%20Rp%207.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- New Product: Panel Bot WA 1-20 GB -->
+                <div class="product">
+                    <img src="https://files.catbox.moe/biiuy5.jpg" alt="Panel Bot WA 1-20 GB" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Panel Bot WA 1-20 GB</h3>
+                        <div class="product-price ask-price">Silakan Tanya Seller</div>
+                        <p class="product-description">Panel bot WhatsApp dengan kapasitas 1-20 GB, cocok untuk kebutuhan besar dengan fitur lengkap.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Bot%20WA%201-20GB%20%28Harga%20Tanya%20Seller%29" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Tanya Harga
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Tentang Page -->
+    <div id="tentang-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Tentang Kami</p>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="about-content">
+                <h2>Apa Itu Panel Bot WhatsApp?</h2>
+                <p>Panel Bot WhatsApp adalah sebuah sistem yang memungkinkan Anda mengotomatisasi berbagai fungsi di WhatsApp, seperti mengirim pesan otomatis, membalas pesan, mengelola grup, dan banyak lagi.</p>
+                
+                <h2>Keunggulan Panel Kami</h2>
+                <p>1. Harga terjangkau dengan kualitas premium</p>
+                <p>2. Fitur lengkap untuk berbagai kebutuhan</p>
+                <p>3. Mudah digunakan bahkan untuk pemula</p>
+                <p>4. Support 24/7 untuk membantu Anda</p>
+                <p>5. Update rutin untuk fitur-fitur terbaru</p>
+                
+                <h2>Mengapa Memilih ZanDKav?</h2>
+                <p>ZanDKav telah berpengalaman dalam menyediakan panel bot WhatsApp sejak lama. Kami fokus pada kepuasan pelanggan dengan memberikan produk berkualitas dan layanan terbaik.</p>
+                
+                <h2>Cara Kerja Panel</h2>
+                <p>1. Beli panel sesuai kebutuhan Anda</p>
+                <p>2. Kami akan mengirimkan akses panel beserta panduan</p>
+                <p>3. Anda bisa langsung menggunakan panel untuk otomatisasi WhatsApp</p>
+                <p>4. Tim support kami siap membantu jika ada kendala</p>
+                
+                <h2>Metode Pembayaran</h2>
+                <p>Kami menerima pembayaran melalui:</p>
+                <p>- DANA: 085828632336</p>
+                <p>- GOPAY: 089653927785</p>
+                <p>Konfirmasi pembayaran melalui WhatsApp setelah transfer.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TESTIMONI SECTION -->
+    <section class="testimoni-section">
+        <h2>Apa Kata Pelanggan Kami?</h2>
+        <div class="testimoni-grid">
+            <!-- Testimoni 1 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/3xh47a.jpg" alt="Testimoni Pelanggan 1">
+                <p>"Panelnya keren banget! Fitur lengkap dan harganya murah. Seller juga ramah dan fast respon."</p>
+                <h4>- John Doe</h4>
+            </div>
+            
+            <!-- Testimoni 2 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/qbt2vc.jpg" alt="Testimoni Pelanggan 2">
+                <p>"Pertama kali beli panel disini dan sangat puas! Tidak mengecewakan sama sekali."</p>
+                <h4>- Jane Smith</h4>
+            </div>
+            
+            <!-- Testimoni 3 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/xcpsmw.jpg" alt="Testimoni Pelanggan 3">
+                <p>"Support 24 jam beneran aktif! Pernah ada masalah jam 2 pagi masih dibantu."</p>
+                <h4>- Robert Johnson</h4>
+            </div>
+            
+            <!-- Testimoni 4 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/nn35z4.jpg" alt="Testimoni Pelanggan 4">
+                <p>"Panelnya stabil dan jarang down. Sudah beli 3 kali disini selalu puas."</p>
+                <h4>- Sarah Williams</h4>
+            </div>
+            
+            <!-- Testimoni 5 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/jgzjoe.jpg" alt="Testimoni Pelanggan 5">
+                <p>"Harga murah tapi kualitas premium. Recommended banget buat yang cari panel WA!"</p>
+                <h4>- Michael Brown</h4>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <h3>ZanDKav</h3>
+        <p>Panel Bot WhatsApp Berkualitas</p>
+        
+        <div class="payment-info">
+            <h4>Metode Pembayaran:</h4>
+            <p><i class="fab fa-google-pay"></i> DANA: 085828632336</p>
+            <p><i class="fas fa-wallet"></i> GOPAY: 089653927785</p>
+        </div>
+        
+        <div class="contact-info">
+            <p>Hubungi kami via WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation between pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.classList.add('active');
+                    
+                    // Hide all pages
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Show selected page
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(`${pageId}-page`).classList.add('active');
+                });
+            });
+            
+            // Additional animation on scroll for products
+            const products = document.querySelectorAll('.product');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp 0.5s ease forwards`;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            products.forEach(product => {
+                observer.observe(product);
+            });
+            
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.btn-whatsapp');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create ripple element
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    
+                    // Get click position
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Position the ripple
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                        window.location.href = this.getAttribute('href');
+                    }, 500);
+                });
+            });
+        });
+    </script>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZanDKav - Panel Bot WhatsApp Murah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Semua gaya CSS sebelumnya tetap sama */
+        
+        /* Gaya tambahan untuk pemutar musik */
+        .pemutar-musik {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 15px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .pemutar-musik tombol {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .pemutar-musik tombol:hover {
+            color: #3498db;
+        }
+        
+        .info-musik {
+            margin-left: 10px;
+            font-size: 12px;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Pemutar YouTube yang tersembunyi */
+        #pemutarYouTube {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigasi Sidebar TikTok Style -->
+    <div class="sidebar">
+        <a href="#home" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>BERANDA</span>
+        </a>
+        <a href="#beli" class="nav-item" data-page="beli">
+            <i class="fas fa-shopping-cart"></i>
+            <span>BELI</span>
+        </a>
+        <a href="#tentang" class="nav-item" data-page="tentang">
+            <i class="fas fa-info-circle"></i>
+            <span>TENTANG</span>
+        </a>
+    </div>
+    
+    <!-- Halaman Beranda -->
+    <div id="home-page" class="page active">
+        <!-- Konten beranda tetap sama -->
+    </div>
+    
+    <!-- Halaman Beli -->
+    <div id="beli-page" class="page">
+        <!-- Konten beli tetap sama -->
+    </div>
+    
+    <!-- Halaman Tentang -->
+    <div id="tentang-page" class="page">
+        <!-- Konten tentang tetap sama -->
+    </div>
+    
+    <!-- Bagian Testimoni -->
+    <section class="testimoni-section">
+        <!-- Konten testimoni tetap sama -->
+    </section>
+    
+    <footer>
+        <!-- Konten footer tetap sama -->
+    </footer>
+
+    <!-- Pemutar Musik YouTube (Tersembunyi) -->
+    <iframe id="pemutarYouTube" width="0" height="0" src="https://www.youtube.com/embed/7VBQCbv1BwY?enablejsapi=1&autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <!-- Tampilan Pemutar Musik -->
+    <div class="pemutar-musik">
+        <tombol id="tombolPlay"><i class="fas fa-play"></i></tombol>
+        <tombol id="tombolMute"><i class="fas fa-volume-up"></i></tombol>
+        <div class="info-musik">Lofi Hip Hop</div>
+    </div>
+
+    <!-- Skrip YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // Navigasi antar halaman (skrip sebelumnya tetap sama)
+        
+        // Kontrol Pemutar YouTube
+        let pemutar;
+        function onYouTubeIframeAPIReady() {
+            pemutar = new YT.Player('pemutarYouTube', {
+                events: {
+                    'onReady': saatPemutarSiap
+                }
+            });
+        }
+        
+        function saatPemutarSiap(event) {
+            // Perbarui info musik ketika siap
+            document.querySelector('.info-musik').textContent = "Lofi Hip Hop";
+        }
+        
+        // Kontrol play/pause
+        document.getElementById('tombolPlay').addEventListener('click', function() {
+            if(pemutar.getPlayerState() === YT.PlayerState.PLAYING) {
+                pemutar.pauseVideo();
+                this.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                pemutar.playVideo();
+                this.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        });
+        
+        // Kontrol mute/unmute
+        document.getElementById('tombolMute').addEventListener('click', function() {
+            if(pemutar.isMuted()) {
+                pemutar.unMute();
+                this.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                pemutar.mute();
+                this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
