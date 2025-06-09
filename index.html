@@ -927,6 +927,95 @@
             transition: all 0.3s ease;
         }
     </style>
+    <!-- Chatbot UI -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: none; z-index: 1000;">
+    <div id="chatbot-header" style="background: #4CAF50; color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; cursor: pointer;">
+        <span>AI Pembantu</span>
+        <button id="close-chatbot" style="float: right; background: none; border: none; color: white; cursor: pointer;">×</button>
+    </div>
+    <div id="chatbot-messages" style="height: 300px; overflow-y: auto; padding: 10px;"></div>
+    <div style="padding: 10px; border-top: 1px solid #eee;">
+        <input type="text" id="user-input" style="width: 70%; padding: 8px;" placeholder="Ketik pesan Anda...">
+        <button id="send-btn" style="width: 25%; padding: 8px; background: #4CAF50; color: white; border: none; border-radius: 4px;">Kirim</button>
+    </div>
+</div>
+
+<button id="chatbot-toggle" style="position: fixed; bottom: 20px; right: 20px; background: #4CAF50; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; z-index: 999;">🤖</button>
+
+<script>
+// Fungsi AI Pembantu
+const chatbotResponses = {
+    "hai|halo|hi|hello": "Halo! Saya AI pembantu Zandkav. Ada yang bisa saya bantu?",
+    "nama kamu|siapa kamu": "Saya adalah AI pembantu untuk website Zandkav645",
+    "fitur|bantuan|help": "Saya bisa membantu menjelaskan tentang konten website ini. Coba tanyakan sesuatu!",
+    "portfolio|proyek": "Anda bisa melihat proyek-proyek di halaman portfolio website ini",
+    "tentang|about": "Website ini berisi informasi tentang Zandkav dan karya-karyanya",
+    "terima kasih|thanks": "Sama-sama! Ada lagi yang bisa saya bantu?",
+    "bye|dadah|sampai jumpa": "Sampai jumpa! Jangan ragu untuk kembali jika ada pertanyaan",
+    "default": "Maaf, saya tidak mengerti pertanyaan Anda. Coba tanyakan hal lain tentang website ini"
+};
+
+// Fungsi untuk memproses input pengguna
+function processUserInput(input) {
+    input = input.toLowerCase();
+    
+    // Cari respons yang sesuai
+    for (const [pattern, response] of Object.entries(chatbotResponses)) {
+        const patterns = pattern.split("|");
+        if (patterns.some(p => input.includes(p))) {
+            return response;
+        }
+    }
+    
+    return chatbotResponses["default"];
+}
+
+// Fungsi untuk menambahkan pesan ke chat
+function addMessage(sender, message) {
+    const messagesDiv = document.getElementById('chatbot-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.style.margin = '5px 0';
+    messageDiv.style.padding = '8px';
+    messageDiv.style.borderRadius = '5px';
+    messageDiv.style.backgroundColor = sender === 'user' ? '#e3f2fd' : '#f1f1f1';
+    messageDiv.style.textAlign = sender === 'user' ? 'right' : 'left';
+    messageDiv.textContent = message;
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+// Event listeners
+document.getElementById('chatbot-toggle').addEventListener('click', function() {
+    const container = document.getElementById('chatbot-container');
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+});
+
+document.getElementById('close-chatbot').addEventListener('click', function() {
+    document.getElementById('chatbot-container').style.display = 'none';
+});
+
+document.getElementById('send-btn').addEventListener('click', function() {
+    const userInput = document.getElementById('user-input');
+    if (userInput.value.trim() !== '') {
+        addMessage('user', userInput.value);
+        const response = processUserInput(userInput.value);
+        setTimeout(() => addMessage('bot', response), 500);
+        userInput.value = '';
+    }
+});
+
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('send-btn').click();
+    }
+});
+
+// Pesan pembuka
+setTimeout(() => {
+    document.getElementById('chatbot-container').style.display = 'block';
+    addMessage('bot', 'Halo! Saya AI pembantu Zandkav. Ada yang bisa saya bantu?');
+}, 3000);
+</script>
 </body>
 </html>
 
