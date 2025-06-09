@@ -167,6 +167,32 @@
             font-size: 0.9rem;
         }
         
+        .payment-methods {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .payment-methods h4 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 1rem;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .payment-method i {
+            margin-right: 10px;
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        
         .btn {
             display: inline-block;
             padding: 0.8rem 1.5rem;
@@ -344,6 +370,19 @@
             margin: 0 auto 2rem;
             line-height: 1.6;
         }
+        
+        /* Payment Info in Footer */
+        .payment-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.1);
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .payment-info h4 {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -406,6 +445,19 @@
                         <h3 class="product-title">Admin Panel</h3>
                         <div class="product-price">Rp 15.000</div>
                         <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
                         <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Admin%20Panel%20Rp%2015.000" class="btn btn-whatsapp pulse">
                             <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
                         </a>
@@ -418,6 +470,19 @@
                         <h3 class="product-title">Panel Unli</h3>
                         <div class="product-price">Rp 5.000</div>
                         <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
                         <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Unli%20Rp%205.000" class="btn btn-whatsapp pulse">
                             <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
                         </a>
@@ -430,6 +495,19 @@
                         <h3 class="product-title">Script Bot WA</h3>
                         <div class="product-price">Rp -</div>
                         <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
                         <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Script%20Bot%20WA" class="btn btn-whatsapp pulse">
                             <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
                         </a>
@@ -442,6 +520,19 @@
                         <h3 class="product-title">Reseller Panel</h3>
                         <div class="product-price">Rp 7.000</div>
                         <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
+                        
+                        <div class="payment-methods">
+                            <h4>Metode Pembayaran:</h4>
+                            <div class="payment-method">
+                                <i class="fab fa-google-pay"></i>
+                                <span>DANA: 085828632336</span>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-wallet"></i>
+                                <span>GOPAY: 089653927785</span>
+                            </div>
+                        </div>
+                        
                         <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Reseller%20Panel%20Rp%207.000" class="btn btn-whatsapp pulse">
                             <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
                         </a>
@@ -483,6 +574,12 @@
                 <p>2. Kami akan mengirimkan akses panel beserta panduan</p>
                 <p>3. Anda bisa langsung menggunakan panel untuk otomatisasi WhatsApp</p>
                 <p>4. Tim support kami siap membantu jika ada kendala</p>
+                
+                <h2>Metode Pembayaran</h2>
+                <p>Kami menerima pembayaran melalui:</p>
+                <p>- DANA: 085828632336</p>
+                <p>- GOPAY: 089653927785</p>
+                <p>Konfirmasi pembayaran melalui WhatsApp setelah transfer.</p>
             </div>
         </div>
     </div>
@@ -490,6 +587,13 @@
     <footer>
         <h3>ZanDKav</h3>
         <p>Panel Bot WhatsApp Berkualitas</p>
+        
+        <div class="payment-info">
+            <h4>Metode Pembayaran:</h4>
+            <p><i class="fab fa-google-pay"></i> DANA: 085828632336</p>
+            <p><i class="fas fa-wallet"></i> GOPAY: 089653927785</p>
+        </div>
+        
         <div class="contact-info">
             <p>Hubungi kami via WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></p>
         </div>
