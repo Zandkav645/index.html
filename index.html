@@ -982,7 +982,17 @@
     Here's the complete code with the TikTok video downloader (using free API) and a "Fun Menu" navigation catalog added:
 
 ```html
-<!-- Fun Menu Navigation -->
+<!-- Main Navigation (Example - Add above Fun Menu) -->
+<nav class="main-nav">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Beli</a></li>
+        <li><a href="#">Produk</a></li>
+        <li><a href="#">Kontak</a></li>
+    </ul>
+</nav>
+
+<!-- Fun Menu Navigation - Placed right below main nav -->
 <nav class="fun-menu">
     <h2>FUN MENU</h2>
     <ul>
@@ -993,14 +1003,48 @@
     </ul>
 </nav>
 
+<!-- TikTok Downloader Section -->
+<div id="tiktok-downloader" class="tiktok-uploader">
+    <h3>Download TikTok Video (No Watermark)</h3>
+    <input type="text" id="tiktokUrl" placeholder="Paste TikTok link here...">
+    <button id="sendToWA">Download & Send to WhatsApp</button>
+    <div id="videoInfo" style="margin-top: 15px;"></div>
+</div>
+
 <style>
+    /* Main Navigation Styles */
+    .main-nav {
+        background-color: #333;
+        padding: 15px 0;
+    }
+    
+    .main-nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 20px;
+    }
+    
+    .main-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    
+    .main-nav a:hover {
+        color: #25D366;
+    }
+
     /* Fun Menu Styles */
     .fun-menu {
         background: linear-gradient(135deg, #6e8efb, #a777e3);
         padding: 15px;
-        border-radius: 10px;
-        margin: 20px auto;
-        max-width: 800px;
+        margin: 0 auto;
+        max-width: 100%;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     
@@ -1035,17 +1079,8 @@
         background-color: rgba(255,255,255,0.4);
         transform: translateY(-3px);
     }
-</style>
 
-<!-- TikTok Downloader Section -->
-<div id="tiktok-downloader" class="tiktok-uploader">
-    <h3>Download TikTok Video (No Watermark)</h3>
-    <input type="text" id="tiktokUrl" placeholder="Paste TikTok link here...">
-    <button id="sendToWA">Download & Send to WhatsApp</button>
-    <div id="videoInfo" style="margin-top: 15px;"></div>
-</div>
-
-<style>
+    /* TikTok Downloader Styles */
     .tiktok-uploader {
         max-width: 600px;
         margin: 30px auto;
@@ -1085,6 +1120,36 @@
     #videoInfo {
         min-height: 50px;
     }
+
+    /* WhatsApp Button Styles */
+    #waChannelBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        padding: 15px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    
+    #waChannelBtn:hover {
+        background-color: #128C7E;
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
 </style>
 
 <script>
@@ -1105,9 +1170,7 @@ document.getElementById("sendToWA").addEventListener("click", async () => {
     videoInfo.innerHTML = '<p>Processing... <i class="fas fa-spinner fa-spin"></i></p>';
     
     try {
-        // Using a free API endpoint (may change over time)
         const apiUrl = `https://api.tikmate.app/api/lookup?url=${encodeURIComponent(tiktokUrl)}`;
-        
         const response = await fetch(apiUrl);
         const data = await response.json();
         
@@ -1137,59 +1200,13 @@ document.getElementById("sendToWA").addEventListener("click", async () => {
 </script>
 
 <!-- WhatsApp Channel Button -->
-<a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; z-index: 1000; animation: pulse 2s infinite;">
+<a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn">
     <i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></i>
     Join Channel
 </a>
 
-<style>
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-        }
-        70% {
-            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-        }
-    }
-    
-    #waChannelBtn:hover {
-        background-color: #128C7E;
-        transform: scale(1.05);
-        transition: all 0.3s ease;
-    }
-</style>
-
 <!-- Add Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-```
-
-Key features of this implementation:
-
-1. **Fun Menu Navigation**:
-   - Gradient background with stylish menu items
-   - Smooth hover effects
-   - Centered layout
-
-2. **TikTok Downloader**:
-   - Free API integration (using tikmate.app)
-   - Responsive design with loading indicator
-   - Error handling with fallback options
-   - WhatsApp sharing functionality
-
-3. **WhatsApp Button**:
-   - Kept your original animated button
-   - Fixed position at bottom-right
-
-4. **Improvements**:
-   - Better error messages
-   - Loading spinner during processing
-   - Fallback to Snaptik/SSSTik if API fails
-   - Responsive design that works on mobile
-
-Note: The free API (tikmate.app) might have limitations or stop working in the future. For a more reliable solution, you might need to use a paid API or the alternative websites mentioned in the error message.
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
 </body>
 </html>
 
