@@ -902,118 +902,31 @@
         <!-- Konten footer tetap sama -->
     </footer>
 
-    <!-- Pemutar Musik YouTube (Tersembunyi) -->
-    <iframe id="pemutarYouTube" width="0" height="0" src="https://www.youtube.com/embed/7VBQCbv1BwY?enablejsapi=1&autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- WhatsApp Channel Button -->
+    <a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; z-index: 1000; animation: pulse 2s infinite;">
+        <i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></i>
+        Join Channel
+    </a>
 
-    <!-- Tampilan Pemutar Musik -->
-    <div class="pemutar-musik">
-        <tombol id="tombolPlay"><i class="fas fa-play"></i></tombol>
-        <tombol id="tombolMute"><i class="fas fa-volume-up"></i></tombol>
-        <div class="info-musik">Lofi Hip Hop</div>
-    </div>
-
-    <!-- Skrip YouTube API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        // Navigasi antar halaman (skrip sebelumnya tetap sama)
-        
-        // Kontrol Pemutar YouTube
-        let pemutar;
-        function onYouTubeIframeAPIReady() {
-            pemutar = new YT.Player('pemutarYouTube', {
-                events: {
-                    'onReady': saatPemutarSiap
-                }
-            });
+    <style>
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
         }
         
-        function saatPemutarSiap(event) {
-            // Perbarui info musik ketika siap
-            document.querySelector('.info-musik').textContent = "Lofi Hip Hop";
+        #waChannelBtn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
         }
-        
-        // Kontrol play/pause
-        document.getElementById('tombolPlay').addEventListener('click', function() {
-            if(pemutar.getPlayerState() === YT.PlayerState.PLAYING) {
-                pemutar.pauseVideo();
-                this.innerHTML = '<i class="fas fa-play"></i>';
-            } else {
-              more    .main-nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .main-nav li {
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .main-nav a {
-        display: block;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s;
-    }
-    
-    .main-nav a:hover {
-        background-color: #e9ecef;
-        color: #25D366;
-    }
-
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-
-    /* Navigation Container */
-    .nav-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100vh;
-        background: #f8f9fa;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        z-index: 100;
-        transition: transform 0.3s ease;
-    }
-
-    /* Main Navigation */
-    .main-nav {
-        padding: 20px 0 0;
-    }
-    
-    .main-nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .main-nav li {
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .main-nav a {
-        display: flex;
-        align-items: center;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s;
-    }
-    
-    .main-nav a i {
-        margin-right: 10px;
-        width: 20px;
-        text-align: center;
-    }
-    
-    .main-nav a:hover {
-        background-color: #e9ecef;
-        color: #25D366;
-    }
+    </style>
 </body>
 </html>
 
