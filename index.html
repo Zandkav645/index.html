@@ -799,6 +799,14 @@
                         <i class="fas fa-gamepad"></i>
                         <h3>Mini Games</h3>
                         <p>Mainkan game-game seru di sini!</p>
+                        <div style="margin-top: 2rem;">
+  <button onclick="toggleInput()" style="padding: 10px 20px; font-weight: bold;">Ubah Gambar</button>
+  
+  <div id="inputContainer" style="display: none; margin-top: 1rem;">
+    <input type="text" id="bgInput" placeholder="Masukkan link gambar" style="width: 80%; padding: 10px;">
+    <button onclick="ubahBackground()" style="padding: 10px 20px; font-weight: bold; margin-top: 10px;">Terapkan</button>
+  </div>
+</div>
                     </div>
                     <div style="margin-top: 2rem; text-align: left;">
   <!-- Game 1: Tebak Angka -->
@@ -1135,5 +1143,18 @@
   text-decoration: underline;
 }
 </style>
+    <script>
+  function toggleInput() {
+    const inputBox = document.getElementById("inputContainer");
+    inputBox.style.display = inputBox.style.display === "none" ? "block" : "none";
+  }
+
+  function ubahBackground() {
+    const link = document.getElementById("bgInput").value.trim();
+    if (link) {
+      document.getElementById("upload-page").style.backgroundImage = `url('${link}')`;
+    }
+  }
+</script>
 </body>
 </html>
