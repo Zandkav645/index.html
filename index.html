@@ -244,12 +244,76 @@
             margin-right: 8px;
         }
         
+        /* TESTIMONI STYLES */
+        .testimoni-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            padding: 60px 20px;
+            margin-top: 50px;
+            color: white;
+            text-align: center;
+        }
+        
+        .testimoni-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #3498db, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .testimoni-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimoni-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .testimoni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .testimoni-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .testimoni-card p {
+            font-style: italic;
+            color: #eee;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .testimoni-card h4 {
+            margin-top: 15px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
         footer {
             background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
             color: white;
             text-align: center;
             padding: 2rem 0;
-            margin-top: 3rem;
         }
         
         .contact-info {
@@ -616,6 +680,47 @@
             </div>
         </div>
     </div>
+    
+    <!-- TESTIMONI SECTION -->
+    <section class="testimoni-section">
+        <h2>Apa Kata Pelanggan Kami?</h2>
+        <div class="testimoni-grid">
+            <!-- Testimoni 1 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/3xh47a.jpg" alt="Testimoni Pelanggan 1">
+                <p>"Panelnya keren banget! Fitur lengkap dan harganya murah. Seller juga ramah dan fast respon."</p>
+                <h4>- John Doe</h4>
+            </div>
+            
+            <!-- Testimoni 2 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/qbt2vc.jpg" alt="Testimoni Pelanggan 2">
+                <p>"Pertama kali beli panel disini dan sangat puas! Tidak mengecewakan sama sekali."</p>
+                <h4>- Jane Smith</h4>
+            </div>
+            
+            <!-- Testimoni 3 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/xcpsmw.jpg" alt="Testimoni Pelanggan 3">
+                <p>"Support 24 jam beneran aktif! Pernah ada masalah jam 2 pagi masih dibantu."</p>
+                <h4>- Robert Johnson</h4>
+            </div>
+            
+            <!-- Testimoni 4 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/nn35z4.jpg" alt="Testimoni Pelanggan 4">
+                <p>"Panelnya stabil dan jarang down. Sudah beli 3 kali disini selalu puas."</p>
+                <h4>- Sarah Williams</h4>
+            </div>
+            
+            <!-- Testimoni 5 -->
+            <div class="testimoni-card">
+                <img src="https://files.catbox.moe/jgzjoe.jpg" alt="Testimoni Pelanggan 5">
+                <p>"Harga murah tapi kualitas premium. Recommended banget buat yang cari panel WA!"</p>
+                <h4>- Michael Brown</h4>
+            </div>
+        </div>
+    </section>
     
     <footer>
         <h3>ZanDKav</h3>
