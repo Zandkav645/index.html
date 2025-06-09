@@ -806,5 +806,117 @@
             });
         });
     </script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZanDKav - Panel Bot WhatsApp Murah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* (All your existing CSS remains the same) */
+
+        /* Add these new styles for music player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 15px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .music-player button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .music-player button:hover {
+            color: #3498db;
+        }
+        
+        .music-info {
+            margin-left: 10px;
+            font-size: 12px;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Hidden YouTube player */
+        #youtubePlayer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- (All your existing HTML remains the same until just before </body>) -->
+
+    <!-- YouTube Music Player (Hidden) -->
+    <iframe id="youtubePlayer" width="0" height="0" src="https://www.youtube.com/embed/7VBQCbv1BwY?enablejsapi=1&autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <!-- Music Player UI -->
+    <div class="music-player">
+        <button id="playBtn"><i class="fas fa-play"></i></button>
+        <button id="muteBtn"><i class="fas fa-volume-up"></i></button>
+        <div class="music-info">Lofi Hip Hop</div>
+    </div>
+
+    <!-- YouTube API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // (Your existing JavaScript remains the same)
+
+        // Add this new YouTube player code
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+        
+        function onPlayerReady(event) {
+            // Update music info when ready
+            document.querySelector('.music-info').textContent = "Lofi Hip Hop";
+        }
+        
+        // Play/Pause control
+        document.getElementById('playBtn').addEventListener('click', function() {
+            if(player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                this.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                player.playVideo();
+                this.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        });
+        
+        // Mute/Unmute control
+        document.getElementById('muteBtn').addEventListener('click', function() {
+            if(player.isMuted()) {
+                player.unMute();
+                this.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                player.mute();
+                this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
