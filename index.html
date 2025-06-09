@@ -928,70 +928,61 @@
         }
     </style>
     <script>
-// Konfigurasi API AI
-const AI_CONFIG = {
-    apiKey: 'Trial-AXiZrq97oQcN5M38', // Ganti dengan API key Anda
-    endpoint: 'https://api.openai.com/v1/chat/completions',
-    model: 'gpt-3.5-turbo',
-    context: `Anda adalah AI pembantu untuk website portfolio Zandkav645. 
-              Website ini berisi proyek-proyek pengembangan web, desain, dan AI.
-              Tanggapi pertanyaan pengguna dengan ramah dan informatif.
-              Jika ditanya di luar topik website, jawab dengan sopan bahwa Anda hanya bisa membantu terkait website ini.`
-};
+<!-- Letakkan ini tepat sebelum </body> di index.html Anda -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; border: 1px solid                                                                                                                    
+  <div id="logo-ai" style="position: absolute; top: -60px; left: 10px; width: 50px; height: 50px; background: #4CAF50; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: move; z-index: 1001;">
+    <span style="color: white; font-size: 24px;">🤖</span>
+  </div>
+  <div id="chatbot-header" style="background:                                                                                                                                                                                                                          
+  <div id="chatbot-messages" style="height: 200px; overflow-y: auto; padding: 10px; background: #f9f9f9;"></div>
+  <div style="padding: 10px; background: white; border-top: 1px solid                                                                                                                                                                                                                                                                                                                                                  
+</div>
+<button id="chatbot-toggle" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #4CAF50; color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 999; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: none;">🤖</button>
 
-async function getAIResponse(message) {
-    try {
-        const response = await fetch(AI_CONFIG.endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AI_CONFIG.apiKey}`
-            },
-            body: JSON.stringify({
-                model: AI_CONFIG.model,
-                messages: [
-                    { role: "system", content: AI_CONFIG.context },
-                    { role: "user", content: message }
-                ],
-                temperature: 0.7
-            })
-        });
-        
-        const data = await response.json();
-        return data.choices[0].message.content;
-    } catch (error) {
-        console.error('Error:', error);
-        return "Maaf, saya sedang mengalami gangguan. Coba lagi nanti atau tanyakan hal lain.";
-    }
-}
-
-// Modifikasi event listener send-btn untuk versi API
-document.getElementById('send-btn').addEventListener('click', async function() {
+<script>
+  // Pastikan DOM sudah sepenuhnya dimuat
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inisialisasi elemen
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const toggleButton = document.getElementById('chatbot-toggle');
+    const closeButton = document.getElementById('close-chatbot');
+    const sendButton = document.getElementById('send-btn');
     const userInput = document.getElementById('user-input');
-    if (userInput.value.trim() !== '') {
-        addMessage('user', userInput.value);
-        
-        // Tampilkan indikator typing
-        const typingIndicator = document.createElement('div');
-        typingIndicator.id = 'typing-indicator';
-        typingIndicator.textContent = 'AI sedang mengetik...';
-        document.getElementById('chatbot-messages').appendChild(typingIndicator);
-        
-        try {
-            const response = await getAIResponse(userInput.value);
-            
-            // Hapus indikator typing dan tampilkan respons
-            document.getElementById('typing-indicator').remove();
-            addMessage('bot', response);
-            
-            userInput.value = '';
-        } catch (error) {
-            document.getElementById('typing-indicator').remove();
-            addMessage('bot', "Maaf, terjadi kesalahan saat memproses permintaan Anda.");
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const logoAi = document.getElementById('logo-ai');
+
+    // Sembunyikan chatbot awalnya
+    chatbotContainer.style.display = 'none';
+    toggleButton.style.display = 'block';
+
+    // Database pengetahuan
+    const knowledgeBase = {
+      "hai": ["Halo! Saya AI pembantu Zandkav.", "Hai! Ada yang bisa saya bantu?"],
+      "nama": ["Saya AI Pembantu Zandkav", "Nama saya Asisten Zandkav"],
+      "portfolio": ["Anda bisa melihat portfolio di halaman Portfolio", "Proyek-proyek tersedia di bagian Portfolio"],
+      "blog": ["Artikel terbaru ada di bagian Blog", "Blog berisi pemikiran tentang teknologi"],
+      "kontak": ["Informasi kontak ada di bagian bawah website", "Cek footer untuk detail kontak"],
+      "default": ["Maaf saya tidak mengerti", "Bisa diulangi dengan kalimat lain?"]
+    };
+
+    // Fungsi pencocokan pertanyaan
+    function findResponse(question) {
+      question = question.toLowerCase();
+      for (const [keyword, responses] of Object.entries(knowledgeBase)) {
+        if (question.includes(keyword)) {
+          return responses[Math.floor(Math.random() * responses.length)];
         }
+      }
+      return knowledgeBase.default[0];
     }
-});
-</script>
+
+    // Fungsi tambah pesan
+    function addMessage(sender, message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.style.margin = '5px 0';
+      messageDiv.style.padding = '
+    });
+      </script>
 </body>
 </html>
 
