@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZanDKav - Panel Murah Berkualitas</title>
+    <title>ZanDKav - Panel Bot WhatsApp Murah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -19,6 +19,48 @@
             background-color: #f5f5f5;
             color: #333;
             overflow-x: hidden;
+            padding-left: 80px; /* Space for sidebar */
+        }
+        
+        /* TikTok Style Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 30px;
+            width: 100%;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item span {
+            font-size: 12px;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255,255,255,0.1);
+            border-left: 3px solid #3498db;
         }
         
         header {
@@ -250,84 +292,235 @@
             color: #555;
             animation: fadeIn 1.5s ease;
         }
+        
+        /* Page Content Styles */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .about-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .about-content h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .home-content {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .home-content h2 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #3498db, #003366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .home-content p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
-        </div>
-        <div class="header-content">
-            <h1>ZanDKav</h1>
-            <p class="tagline">Panel Berkualitas dengan Harga Terjangkau</p>
-        </div>
-    </header>
+    <!-- TikTok Style Sidebar Navigation -->
+    <div class="sidebar">
+        <a href="#home" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>HOME</span>
+        </a>
+        <a href="#beli" class="nav-item" data-page="beli">
+            <i class="fas fa-shopping-cart"></i>
+            <span>BELI</span>
+        </a>
+        <a href="#tentang" class="nav-item" data-page="tentang">
+            <i class="fas fa-info-circle"></i>
+            <span>TENTANG</span>
+        </a>
+    </div>
     
-    <div class="container">
-        <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Panel Bot WhatsApp Berkualitas</p>
+            </div>
+        </header>
         
-        <div class="products">
-            <div class="product">
-                <img src="https://files.catbox.moe/btjd85.jpg" alt="Admin Panel" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Admin Panel</h3>
-                    <div class="product-price">Rp 15.000</div>
-                    <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Admin%20Panel%20Rp%2015.000" class="btn btn-whatsapp pulse">
-                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
-                    </a>
+        <div class="container">
+            <div class="home-content">
+                <h2>Selamat Datang di ZanDKav</h2>
+                <p>Kami menyediakan panel bot WhatsApp dengan harga terjangkau dan kualitas terbaik. Dengan berbagai fitur lengkap, panel kami akan membantu otomatisasi bisnis dan komunikasi Anda.</p>
+                <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Beli Page -->
+    <div id="beli-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Produk Kami</p>
+            </div>
+        </header>
+        
+        <div class="container">
+            <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
+            
+            <div class="products">
+                <div class="product">
+                    <img src="https://files.catbox.moe/btjd85.jpg" alt="Admin Panel" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Admin Panel</h3>
+                        <div class="product-price">Rp 15.000</div>
+                        <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Admin%20Panel%20Rp%2015.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/ajev1f.jpg" alt="Panel Unli" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Panel Unli</h3>
+                        <div class="product-price">Rp 5.000</div>
+                        <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Unli%20Rp%205.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/07jffk.jpg" alt="Script Bot WA" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Script Bot WA</h3>
+                        <div class="product-price">Rp -</div>
+                        <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Script%20Bot%20WA" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <img src="https://files.catbox.moe/btjd85.jpg" alt="Reseller Panel" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Reseller Panel</h3>
+                        <div class="product-price">Rp 7.000</div>
+                        <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
+                        <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Reseller%20Panel%20Rp%207.000" class="btn btn-whatsapp pulse">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                        </a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="product">
-                <img src="https://files.catbox.moe/ajev1f.jpg" alt="Panel Unli" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Panel Unli</h3>
-                    <div class="product-price">Rp 5.000</div>
-                    <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Unli%20Rp%205.000" class="btn btn-whatsapp pulse">
-                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
-                    </a>
-                </div>
+        </div>
+    </div>
+    
+    <!-- Tentang Page -->
+    <div id="tentang-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
             </div>
-            
-            <div class="product">
-                <img src="https://files.catbox.moe/07jffk.jpg" alt="Script Bot WA" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Script Bot WA</h3>
-                    <div class="product-price">Rp -</div>
-                    <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Script%20Bot%20WA" class="btn btn-whatsapp pulse">
-                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
-                    </a>
-                </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Tentang Kami</p>
             </div>
-            
-            <div class="product">
-                <img src="https://files.catbox.moe/btjd85.jpg" alt="Reseller Panel" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Reseller Panel</h3>
-                    <div class="product-price">Rp 7.000</div>
-                    <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
-                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Reseller%20Panel%20Rp%207.000" class="btn btn-whatsapp pulse">
-                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
-                    </a>
-                </div>
+        </header>
+        
+        <div class="container">
+            <div class="about-content">
+                <h2>Apa Itu Panel Bot WhatsApp?</h2>
+                <p>Panel Bot WhatsApp adalah sebuah sistem yang memungkinkan Anda mengotomatisasi berbagai fungsi di WhatsApp, seperti mengirim pesan otomatis, membalas pesan, mengelola grup, dan banyak lagi.</p>
+                
+                <h2>Keunggulan Panel Kami</h2>
+                <p>1. Harga terjangkau dengan kualitas premium</p>
+                <p>2. Fitur lengkap untuk berbagai kebutuhan</p>
+                <p>3. Mudah digunakan bahkan untuk pemula</p>
+                <p>4. Support 24/7 untuk membantu Anda</p>
+                <p>5. Update rutin untuk fitur-fitur terbaru</p>
+                
+                <h2>Mengapa Memilih ZanDKav?</h2>
+                <p>ZanDKav telah berpengalaman dalam menyediakan panel bot WhatsApp sejak lama. Kami fokus pada kepuasan pelanggan dengan memberikan produk berkualitas dan layanan terbaik.</p>
+                
+                <h2>Cara Kerja Panel</h2>
+                <p>1. Beli panel sesuai kebutuhan Anda</p>
+                <p>2. Kami akan mengirimkan akses panel beserta panduan</p>
+                <p>3. Anda bisa langsung menggunakan panel untuk otomatisasi WhatsApp</p>
+                <p>4. Tim support kami siap membantu jika ada kendala</p>
             </div>
         </div>
     </div>
     
     <footer>
         <h3>ZanDKav</h3>
-        <p>Panel Berkualitas dengan Harga Terjangkau</p>
+        <p>Panel Bot WhatsApp Berkualitas</p>
         <div class="contact-info">
             <p>Hubungi kami via WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></p>
         </div>
     </footer>
     
     <script>
-        // Additional animation on scroll
+        // Navigation between pages
         document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.classList.add('active');
+                    
+                    // Hide all pages
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Show selected page
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(`${pageId}-page`).classList.add('active');
+                });
+            });
+            
+            // Additional animation on scroll for products
             const products = document.querySelectorAll('.product');
             
             const observer = new IntersectionObserver((entries) => {
