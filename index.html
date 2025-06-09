@@ -454,10 +454,104 @@
             font-weight: bold;
             font-style: italic;
         }
+
+        /* Fun Menu Specific Styles */
+        .fun-menu-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .fun-menu-content h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #3498db, #003366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fun-menu-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .fun-menu-item {
+            display: inline-block;
+            margin: 15px;
+            padding: 20px;
+            background: #e0f2f7;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .fun-menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .fun-menu-item i {
+            font-size: 36px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .fun-menu-item h3 {
+            font-size: 1.2rem;
+            color: #1a1a1a;
+        }
+
+        /* Audio Player Styles */
+        .audio-player-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 15px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .audio-player-container button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .audio-player-container button:hover {
+            color: #3498db;
+        }
+        
+        .song-info {
+            margin-left: 10px;
+            font-size: 12px;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Hidden YouTube player */
+        #youtubePlayer {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <!-- TikTok Style Sidebar Navigation -->
     <div class="sidebar">
         <a href="#home" class="nav-item active" data-page="home">
             <i class="fas fa-home"></i>
@@ -471,9 +565,12 @@
             <i class="fas fa-info-circle"></i>
             <span>TENTANG</span>
         </a>
+        <a href="#funmenu" class="nav-item" data-page="funmenu">
+            <i class="fas fa-laugh-squint"></i>
+            <span>FUN MENU</span>
+        </a>
     </div>
     
-    <!-- Home Page -->
     <div id="home-page" class="page active">
         <header>
             <div class="logo-container">
@@ -494,7 +591,6 @@
         </div>
     </div>
     
-    <!-- Beli Page -->
     <div id="beli-page" class="page">
         <header>
             <div class="logo-container">
@@ -610,7 +706,6 @@
                     </div>
                 </div>
                 
-                <!-- New Product: Panel Bot WA 1-20 GB -->
                 <div class="product">
                     <img src="https://files.catbox.moe/biiuy5.jpg" alt="Panel Bot WA 1-20 GB" class="product-image">
                     <div class="product-info">
@@ -639,7 +734,6 @@
         </div>
     </div>
     
-    <!-- Tentang Page -->
     <div id="tentang-page" class="page">
         <header>
             <div class="logo-container">
@@ -680,40 +774,75 @@
             </div>
         </div>
     </div>
+
+    <div id="funmenu-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Menu Hiburan Kami</p>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="fun-menu-content">
+                <h2>Selamat Datang di Fun Menu!</h2>
+                <p>Nikmati berbagai fitur hiburan dan kesenangan yang kami sediakan untuk Anda. Bersantai sejenak dari aktivitas harian Anda.</p>
+                <div class="fun-menu-grid">
+                    <div class="fun-menu-item">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Mini Games</h3>
+                        <p>Mainkan game-game seru di sini!</p>
+                    </div>
+                    <div class="fun-menu-item">
+                        <i class="fas fa-quote-right"></i>
+                        <h3>Kata-kata Bijak</h3>
+                        <p>Dapatkan inspirasi harian.</p>
+                    </div>
+                    <div class="fun-menu-item">
+                        <i class="fas fa-music"></i>
+                        <h3>Dengarkan Musik</h3>
+                        <p>Putar musik favorit Anda.</p>
+                    </div>
+                    <div class="fun-menu-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Tebak-tebakan</h3>
+                        <p>Uji pengetahuanmu dengan tebak-tebakan!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <!-- TESTIMONI SECTION -->
     <section class="testimoni-section">
         <h2>Apa Kata Pelanggan Kami?</h2>
         <div class="testimoni-grid">
-            <!-- Testimoni 1 -->
             <div class="testimoni-card">
                 <img src="https://files.catbox.moe/3xh47a.jpg" alt="Testimoni Pelanggan 1">
                 <p>"Panelnya keren banget! Fitur lengkap dan harganya murah. Seller juga ramah dan fast respon."</p>
                 <h4>- John Doe</h4>
             </div>
             
-            <!-- Testimoni 2 -->
             <div class="testimoni-card">
                 <img src="https://files.catbox.moe/qbt2vc.jpg" alt="Testimoni Pelanggan 2">
                 <p>"Pertama kali beli panel disini dan sangat puas! Tidak mengecewakan sama sekali."</p>
                 <h4>- Jane Smith</h4>
             </div>
             
-            <!-- Testimoni 3 -->
             <div class="testimoni-card">
                 <img src="https://files.catbox.moe/xcpsmw.jpg" alt="Testimoni Pelanggan 3">
                 <p>"Support 24 jam beneran aktif! Pernah ada masalah jam 2 pagi masih dibantu."</p>
                 <h4>- Robert Johnson</h4>
             </div>
             
-            <!-- Testimoni 4 -->
             <div class="testimoni-card">
                 <img src="https://files.catbox.moe/nn35z4.jpg" alt="Testimoni Pelanggan 4">
                 <p>"Panelnya stabil dan jarang down. Sudah beli 3 kali disini selalu puas."</p>
                 <h4>- Sarah Williams</h4>
             </div>
             
-            <!-- Testimoni 5 -->
             <div class="testimoni-card">
                 <img src="https://files.catbox.moe/jgzjoe.jpg" alt="Testimoni Pelanggan 5">
                 <p>"Harga murah tapi kualitas premium. Recommended banget buat yang cari panel WA!"</p>
@@ -806,421 +935,5 @@
             });
         });
     </script>
-    <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZanDKav - Panel Bot WhatsApp Murah</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Semua gaya CSS sebelumnya tetap sama */
-        
-        /* Gaya tambahan untuk pemutar musik */
-        .pemutar-musik {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 15px;
-            border-radius: 50px;
-            color: white;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-        
-        .pemutar-musik tombol {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 20px;
-            margin: 0 5px;
-            transition: all 0.3s;
-        }
-        
-        .pemutar-musik tombol:hover {
-            color: #3498db;
-        }
-        
-        .info-musik {
-            margin-left: 10px;
-            font-size: 12px;
-            max-width: 120px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        /* Pemutar YouTube yang tersembunyi */
-        #pemutarYouTube {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigasi Sidebar TikTok Style -->
-    <div class="sidebar">
-        <a href="#home" class="nav-item active" data-page="home">
-            <i class="fas fa-home"></i>
-            <span>BERANDA</span>
-        </a>
-        <a href="#beli" class="nav-item" data-page="beli">
-            <i class="fas fa-shopping-cart"></i>
-            <span>BELI</span>
-        </a>
-        <a href="#tentang" class="nav-item" data-page="tentang">
-            <i class="fas fa-info-circle"></i>
-            <span>TENTANG</span>
-        </a>
-    </div>
-    
-    <!-- Halaman Beranda -->
-    <div id="home-page" class="page active">
-        <!-- Konten beranda tetap sama -->
-    </div>
-    
-    <!-- Halaman Beli -->
-    <div id="beli-page" class="page">
-        <!-- Konten beli tetap sama -->
-    </div>
-    
-    <!-- Halaman Tentang -->
-    <div id="tentang-page" class="page">
-        <!-- Konten tentang tetap sama -->
-    </div>
-    
-    <!-- Bagian Testimoni -->
-    <section class="testimoni-section">
-        <!-- Konten testimoni tetap sama -->
-    </section>
-    
-    <footer>
-        <!-- Konten footer tetap sama -->
-    </footer>
-
-    <!-- WhatsApp Channel Button -->
-    <a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; z-index: 1000; animation: pulse 2s infinite;">
-        <i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></i>
-        Join Channel
-    </a>
-
-    <style>
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-        
-        #waChannelBtn:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
-            transition: all 0.3s ease;
-        }
-    </style>
-    <script>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZanDKav-AI Pemandu Interaktif</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        #ai-container {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4b6cb7, #182848);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            cursor: move;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        #ai-logo {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: #4b6cb7;
-            font-size: 14px;
-            text-align: center;
-            line-height: 1.2;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-        
-        #chat-box {
-            position: absolute;
-            width: 280px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            display: none;
-            z-index: 1001;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        #chat-box p {
-            margin: 0;
-            color: #333;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #888;
-            transition: color 0.2s;
-        }
-        
-        .close-btn:hover {
-            color: #555;
-        }
-        
-        .ai-title {
-            font-weight: bold;
-            color: #4b6cb7;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        
-        #ai-container:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-        }
-    </style>
-</head>
-<body>
-    <div id="ai-container">
-        <div id="ai-logo">ZanDKav<br>-AI</div>
-    </div>
-    
-    <div id="chat-box">
-        <span class="close-btn">×</span>
-        <div class="ai-title">ZanDKav-AI</div>
-        <p>Halo! Saya ZanDKav-AI, pemandu virtual Anda. Seret saya untuk memindahkan atau klik untuk berinteraksi.</p>
-    </div>
-
-    <script>
-        const aiContainer = document.getElementById('ai-container');
-        const chatBox = document.getElementById('chat-box');
-        const closeBtn = document.querySelector('.close-btn');
-        
-        let isDragging = false;
-        let offsetX, offsetY;
-        let clickStartTime = 0;
-        let posX = window.innerWidth / 2 - 35;
-        let posY = window.innerHeight / 2 - 35;
-        
-        // Posisi awal AI di tengah layar
-        aiContainer.style.left = `${posX}px`;
-        aiContainer.style.top = `${posY}px`;
-        
-        // Fungsi untuk menampilkan chat box
-        aiContainer.addEventListener('click', (e) => {
-            const clickDuration = Date.now() - clickStartTime;
-            
-            // Hanya tampilkan chat box jika bukan bagian dari drag
-            if (clickDuration < 200 && !isDragging) {
-                chatBox.style.display = 'block';
-                
-                // Posisi chat box di atas AI
-                const aiRect = aiContainer.getBoundingClientRect();
-                const chatBoxHeight = chatBox.offsetHeight;
-                
-                // Cek jika ada cukup ruang di atas AI
-                if (aiRect.top > chatBoxHeight + 20) {
-                    chatBox.style.bottom = `${window.innerHeight - aiRect.top + 10}px`;
-                } else {
-                    // Jika tidak cukup ruang di atas, taruh di bawah
-                    chatBox.style.bottom = `${window.innerHeight - aiRect.bottom - 10}px`;
-                }
-                
-                chatBox.style.left = `${aiRect.left + aiRect.width/2 - 140}px`;
-            }
-        });
-        
-        // Mulai drag (catat waktu klik)
-        aiContainer.addEventListener('mousedown', (e) => {
-            clickStartTime = Date.now();
-            isDragging = true;
-            
-            const rect = aiContainer.getBoundingClientRect();
-            offsetX = e.clientX - rect.left;
-            offsetY = e.clientY - rect.top;
-            
-            aiContainer.style.cursor = 'grabbing';
-            chatBox.style.display = 'none';
-            
-            e.preventDefault();
-        });
-        
-        // Gerakan drag
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            
-            posX = e.clientX - offsetX;
-            posY = e.clientY - offsetY;
-            
-            // Batasi agar tidak keluar dari layar
-            posX = Math.max(0, Math.min(posX, window.innerWidth - aiContainer.offsetWidth));
-            posY = Math.max(0, Math.min(posY, window.innerHeight - aiContainer.offsetHeight));
-            
-            aiContainer.style.left = `${posX}px`;
-            aiContainer.style.top = `${posY}px`;
-        });
-        
-        // Akhiri drag
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            aiContainer.style.cursor = 'move';
-        });
-        
-        // Untuk layar sentuh
-        aiContainer.addEventListener('touchstart', (e) => {
-            clickStartTime = Date.now();
-            isDragging = true;
-            
-            const touch = e.touches[0];
-            const rect = aiContainer.getBoundingClientRect();
-            offsetX = touch.clientX - rect.left;
-            offsetY = touch.clientY - rect.top;
-            
-            chatBox.style.display = 'none';
-        });
-        
-        document.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            
-            const touch = e.touches[0];
-            posX = touch.clientX - offsetX;
-            posY = touch.clientY - offsetY;
-            
-            // Batasi agar tidak keluar dari layar
-            posX = Math.max(0, Math.min(posX, window.innerWidth - aiContainer.offsetWidth));
-            posY = Math.max(0, Math.min(posY, window.innerHeight - aiContainer.offsetHeight));
-            
-            aiContainer.style.left = `${posX}px`;
-            aiContainer.style.top = `${posY}px`;
-        });
-        
-        document.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-        
-        // Tutup chat box
-        closeBtn.addEventListener('click', () => {
-            chatBox.style.display = 'none';
-        });
-        
-        // Responsif saat ukuran layar berubah
-        window.addEventListener('resize', () => {
-            // Pastikan AI tetap dalam layar
-            posX = Math.max(0, Math.min(posX, window.innerWidth - aiContainer.offsetWidth));
-            posY = Math.max(0, Math.min(posY, window.innerHeight - aiContainer.offsetHeight));
-            
-            aiContainer.style.left = `${posX}px`;
-            aiContainer.style.top = `${posY}px`;
-        });
-    </script>
-    <!-- ZanDKav-AI Widget -->
-<div id="ai-container">
-  <div id="ai-logo">ZanDKav<br>-AI</div>
-</div>
-
-<div id="chat-box">
-  <span class="close-btn">×</span>
-  <div class="ai-title">ZanDKav-AI</div>
-  <p>Halo! Saya asisten virtual Anda.</p>
-</div>
-
-<style>
-  #ai-container {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #4b6cb7, #182848);
-    border-radius: 50%;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    cursor: move;
-    z-index: 9999 !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  }
-  #ai-logo {
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    text-align: center;
-    line-height: 1.2;
-    color: #4b6cb7;
-    font-weight: bold;
-  }
-  /* CSS lainnya tetap seperti sebelumnya */
-</style>
-
-<script>
-  // Inisialisasi ZanDKav-AI
-  const ai = document.getElementById('ai-container');
-  const chatBox = document.getElementById('chat-box');
-  
-  ai.addEventListener('click', () => {
-    chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
-  });
-  
-  // Fungsi drag (sama seperti kode sebelumnya)
-  let isDragging = false;
-  // ... tambahkan kode drag di sini ...
-</script>
 </body>
 </html>
-
