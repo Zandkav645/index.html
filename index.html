@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZanDKav - Panel Murah Berkualitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid #3498db;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #3498db, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            animation: fadeIn 2s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product:nth-child(1) { animation-delay: 0.2s; }
+        .product:nth-child(2) { animation-delay: 0.4s; }
+        .product:nth-child(3) { animation-delay: 0.6s; }
+        .product:nth-child(4) { animation-delay: 0.8s; }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            color: white;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-whatsapp:active {
+            transform: translateY(0);
+        }
+        
+        .btn-whatsapp::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-whatsapp:hover::after {
+            left: 100%;
+        }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #003366 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+        
+        .description {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #555;
+            animation: fadeIn 1.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+        </div>
+        <div class="header-content">
+            <h1>ZanDKav</h1>
+            <p class="tagline">Panel Berkualitas dengan Harga Terjangkau</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <p class="description">"Beli panel di ZanDKav harga murah dan terjangkau di jamin badmood"</p>
+        
+        <div class="products">
+            <div class="product">
+                <img src="https://files.catbox.moe/btjd85.jpg" alt="Admin Panel" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Admin Panel</h3>
+                    <div class="product-price">Rp 15.000</div>
+                    <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
+                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Admin%20Panel%20Rp%2015.000" class="btn btn-whatsapp pulse">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                    </a>
+                </div>
+            </div>
+            
+            <div class="product">
+                <img src="https://files.catbox.moe/ajev1f.jpg" alt="Panel Unli" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Panel Unli</h3>
+                    <div class="product-price">Rp 5.000</div>
+                    <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
+                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Panel%20Unli%20Rp%205.000" class="btn btn-whatsapp pulse">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                    </a>
+                </div>
+            </div>
+            
+            <div class="product">
+                <img src="https://files.catbox.moe/07jffk.jpg" alt="Script Bot WA" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Script Bot WA</h3>
+                    <div class="product-price">Rp -</div>
+                    <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
+                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Script%20Bot%20WA" class="btn btn-whatsapp pulse">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                    </a>
+                </div>
+            </div>
+            
+            <div class="product">
+                <img src="https://files.catbox.moe/btjd85.jpg" alt="Reseller Panel" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Reseller Panel</h3>
+                    <div class="product-price">Rp 7.000</div>
+                    <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
+                    <a href="https://wa.me/6289653927785?text=Saya%20tertarik%20untuk%20membeli%20Reseller%20Panel%20Rp%207.000" class="btn btn-whatsapp pulse">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> Beli Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <h3>ZanDKav</h3>
+        <p>Panel Berkualitas dengan Harga Terjangkau</p>
+        <div class="contact-info">
+            <p>Hubungi kami via WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Additional animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = document.querySelectorAll('.product');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp 0.5s ease forwards`;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            products.forEach(product => {
+                observer.observe(product);
+            });
+            
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.btn-whatsapp');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create ripple element
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    
+                    // Get click position
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Position the ripple
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                        window.location.href = this.getAttribute('href');
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
