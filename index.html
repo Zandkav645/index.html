@@ -982,26 +982,28 @@
     Here's the complete code with the TikTok video downloader (using free API) and a "Fun Menu" navigation catalog added:
 
 ```html
-<!-- Main Navigation (Example - Add above Fun Menu) -->
-<nav class="main-nav">
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Beli</a></li>
-        <li><a href="#">Produk</a></li>
-        <li><a href="#">Kontak</a></li>
-    </ul>
-</nav>
+<!-- Main Navigation -->
+<div class="nav-container">
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">Beli</a></li>
+            <li><a href="#">Produk</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
 
-<!-- Fun Menu Navigation - Placed right below main nav -->
-<nav class="fun-menu">
-    <h2>FUN MENU</h2>
-    <ul>
-        <li><a href="#tiktok-downloader">TikTok Downloader</a></li>
-        <li><a href="#music">Music</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="#games">Games</a></li>
-    </ul>
-</nav>
+    <!-- Fun Menu - Positioned below main nav in top-left corner -->
+    <nav class="fun-menu">
+        <h2>FUN MENU</h2>
+        <ul>
+            <li><a href="#tiktok-downloader">Downloader</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#games">Games</a></li>
+        </ul>
+    </nav>
+</div>
 
 <!-- TikTok Downloader Section -->
 <div id="tiktok-downloader" class="tiktok-uploader">
@@ -1011,124 +1013,111 @@
     <div id="videoInfo" style="margin-top: 15px;"></div>
 </div>
 
+<!-- WhatsApp Channel Button -->
+<a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn">
+    <i class="fab fa-whatsapp"></i> Join Channel
+</a>
+
 <style>
-    /* Main Navigation Styles */
+    /* Navigation Container */
+    .nav-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background: #f8f9fa;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+
+    /* Main Navigation */
     .main-nav {
-        background-color: #333;
-        padding: 15px 0;
+        padding: 20px 0 0;
     }
     
     .main-nav ul {
-        display: flex;
-        justify-content: center;
         list-style: none;
         padding: 0;
         margin: 0;
-        gap: 20px;
+    }
+    
+    .main-nav li {
+        border-bottom: 1px solid #e0e0e0;
     }
     
     .main-nav a {
-        color: white;
+        display: block;
+        padding: 12px 20px;
+        color: #333;
         text-decoration: none;
-        padding: 8px 15px;
         font-weight: bold;
         transition: all 0.3s;
     }
     
     .main-nav a:hover {
+        background-color: #e9ecef;
         color: #25D366;
     }
 
-    /* Fun Menu Styles */
+    /* Fun Menu */
     .fun-menu {
-        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        margin-top: 20px;
         padding: 15px;
-        margin: 0 auto;
-        max-width: 100%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
     }
     
     .fun-menu h2 {
         color: white;
-        text-align: center;
-        font-size: 28px;
-        margin-bottom: 15px;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        font-size: 18px;
+        margin: 0 0 10px 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     
     .fun-menu ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 0;
         list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .fun-menu li {
+        margin-bottom: 8px;
     }
     
     .fun-menu a {
+        display: block;
         color: white;
         text-decoration: none;
-        padding: 8px 15px;
+        padding: 8px 12px;
         background-color: rgba(255,255,255,0.2);
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        font-weight: bold;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: all 0.3s;
     }
     
     .fun-menu a:hover {
         background-color: rgba(255,255,255,0.4);
-        transform: translateY(-3px);
+        transform: translateX(5px);
     }
 
-    /* TikTok Downloader Styles */
+    /* TikTok Downloader */
     .tiktok-uploader {
         max-width: 600px;
-        margin: 30px auto;
+        margin: 30px auto 30px 270px; /* Adjusted for sidebar */
         padding: 20px;
         background-color: #f5f5f5;
         border-radius: 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    
-    #tiktokUrl {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 2px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    
-    #sendToWA {
-        background-color: #25D366;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: all 0.3s;
-    }
-    
-    #sendToWA:hover {
-        background-color: #128C7E;
-        transform: scale(1.05);
-    }
-    
-    #videoInfo {
-        min-height: 50px;
     }
 
-    /* WhatsApp Button Styles */
+    /* WhatsApp Button */
     #waChannelBtn {
         position: fixed;
         bottom: 20px;
         right: 20px;
         background-color: #25D366;
         color: white;
-        padding: 15px;
+        padding: 12px 20px;
         border-radius: 50px;
         text-decoration: none;
         font-weight: bold;
@@ -1139,16 +1128,15 @@
         animation: pulse 2s infinite;
     }
     
+    #waChannelBtn i {
+        margin-right: 8px;
+        font-size: 20px;
+    }
+    
     @keyframes pulse {
         0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
         70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-    
-    #waChannelBtn:hover {
-        background-color: #128C7E;
-        transform: scale(1.05);
-        transition: all 0.3s ease;
     }
 </style>
 
@@ -1199,14 +1187,8 @@ document.getElementById("sendToWA").addEventListener("click", async () => {
 });
 </script>
 
-<!-- WhatsApp Channel Button -->
-<a href="https://whatsapp.com/channel/0029Vaqe6AA5PO13FUcYkJ3b" target="_blank" id="waChannelBtn">
-    <i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></i>
-    Join Channel
-</a>
-
 <!-- Add Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
 </html>
 
