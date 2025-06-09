@@ -796,6 +796,54 @@
                         <h3>Mini Games</h3>
                         <p>Mainkan game-game seru di sini!</p>
                     </div>
+                    <div style="margin-top: 2rem; text-align: left;">
+  <!-- Game 1: Tebak Angka -->
+  <section>
+    <h3>🎯 Tebak Angka</h3>
+    <p>Tebak angka antara 1 sampai 10:</p>
+    <input type="number" id="guessInput" />
+    <button onclick="checkGuess()">Tebak</button>
+    <div id="guessResult" style="margin-top: 10px;"></div>
+  </section>
+
+  <!-- Game 2: Tebak Warna -->
+  <section style="margin-top: 2rem;">
+    <h3>🎨 Tebak Warna</h3>
+    <p>Apa warna tulisan ini?</p>
+    <div id="colorText" style="font-size: 24px; font-weight: bold;"></div>
+    <select id="colorGuess">
+      <option value="red">Merah</option>
+      <option value="blue">Biru</option>
+      <option value="green">Hijau</option>
+      <option value="yellow">Kuning</option>
+    </select>
+    <button onclick="checkColor()">Tebak Warna</button>
+    <div id="colorResult" style="margin-top: 10px;"></div>
+  </section>
+
+  <!-- Game 3: Kuis Cepat -->
+  <section style="margin-top: 2rem;">
+    <h3>🧠 Kuis Cepat</h3>
+    <p>Apa ibu kota Indonesia?</p>
+    <select id="quizAnswer">
+      <option value="Bandung">Bandung</option>
+      <option value="Surabaya">Surabaya</option>
+      <option value="Jakarta">Jakarta</option>
+      <option value="Medan">Medan</option>
+    </select>
+    <button onclick="checkQuiz()">Jawab</button>
+    <div id="quizResult" style="margin-top: 10px;"></div>
+  </section>
+
+  <!-- Game 4: Click Counter -->
+  <section style="margin-top: 2rem;">
+    <h3>🖱️ Click Counter</h3>
+    <p>Berapa kali kamu bisa klik dalam 5 detik?</p>
+    <button id="clickBtn" onclick="countClick()">Klik Saya!</button>
+    <div id="clickResult" style="margin-top: 10px;">Klik: 0</div>
+    <div id="timerDisplay" style="margin-top: 5px;"></div>
+  </section>
+</div>
                     <div class="fun-menu-item">
                         <i class="fas fa-quote-right"></i>
                         <h3>Kata-kata Bijak</h3>
