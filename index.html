@@ -617,7 +617,7 @@
                         <h3 class="product-title">Admin Panel</h3>
                         <div class="product-price">Rp 15.000</div>
                         <p class="product-description">Panel admin lengkap dengan fitur-fitur premium untuk mengelola sistem Anda dengan mudah.</p>
-                        
+                        <button onclick="showQRIS('Admin Panel')">Beli Sekarang</button>
                         <div class="payment-methods">
                             <h4>Metode Pembayaran:</h4>
                             <div class="payment-method">
@@ -642,7 +642,7 @@
                         <h3 class="product-title">Panel Unli</h3>
                         <div class="product-price">Rp 5.000</div>
                         <p class="product-description">Panel dengan akses unlimited untuk kebutuhan Anda tanpa batasan.</p>
-                        
+                        <button onclick="showQRIS('Panel Unli')">Beli Sekarang</button>
                         <div class="payment-methods">
                             <h4>Metode Pembayaran:</h4>
                             <div class="payment-method">
@@ -667,7 +667,7 @@
                         <h3 class="product-title">Script Bot WA</h3>
                         <div class="product-price">Rp -</div>
                         <p class="product-description">Script bot WhatsApp yang powerful untuk otomatisasi berbagai kebutuhan.</p>
-                        
+                        <button onclick="showQRIS('Script Bot Wa')">Beli Sekarang</button>
                         <div class="payment-methods">
                             <h4>Metode Pembayaran:</h4>
                             <div class="payment-method">
@@ -692,7 +692,7 @@
                         <h3 class="product-title">Reseller Panel</h3>
                         <div class="product-price">Rp 7.000</div>
                         <p class="product-description">Panel khusus reseller dengan fitur manajemen dan keuntungan menarik.</p>
-                        
+                        <button onclick="showQRIS('Reseller Panel')">Beli Sekarang</button>
                         <div class="payment-methods">
                             <h4>Metode Pembayaran:</h4>
                             <div class="payment-method">
@@ -717,7 +717,7 @@
                         <h3 class="product-title">Panel Bot WA 1-20 GB</h3>
                         <div class="product-price ask-price">Silakan Tanya Seller</div>
                         <p class="product-description">Panel bot WhatsApp dengan kapasitas 1-20 GB, cocok untuk kebutuhan besar dengan fitur lengkap.</p>
-                        
+                        <button onclick="showQRIS('Panel Bot Wa 1-20Gb')">Beli Sekarang</button>
                         <div class="payment-methods">
                             <h4>Metode Pembayaran:</h4>
                             <div class="payment-method">
@@ -2414,6 +2414,46 @@ nav a:hover {
   header {
     margin-left: 80px; /* dorong isi agar tidak tertutup sidebar */
   }
+      /*Qris*/
+    <!-- Modal QRIS -->
+<div id="qrisModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; position:relative;">
+    <h3 id="modalTitle">Pembayaran</h3>
+    <img src="https://files.catbox.moe/mq9cfe.jpg" alt="QRIS" style="width:100%; border-radius:8px;" />
+    <p>Scan QRIS di atas, lalu isi data di bawah:</p>
+    <input type="number" id="nominalInput" placeholder="Masukkan nominal" style="width:100%; padding:10px; margin-bottom:10px;" />
+    <input type="text" id="buktiInput" placeholder="Link bukti transfer (gambar)" style="width:100%; padding:10px; margin-bottom:10px;" />
+    <button onclick="kirimWA()" style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:5px;">Kirim ke WhatsApp</button>
+    <button onclick="tutupModal()" style="margin-top:10px; background:#ccc; padding:5px 10px; border:none; border-radius:5px;">Tutup</button>
+  </div>
+</div>
+        <script>
+  let produkSekarang = "";
+
+  function showQRIS(namaProduk) {
+    produkSekarang = namaProduk;
+    document.getElementById("modalTitle").innerText = `Pembayaran untuk ${namaProduk}`;
+    document.getElementById("qrisModal").style.display = "flex";
+  }
+
+  function tutupModal() {
+    document.getElementById("qrisModal").style.display = "none";
+  }
+
+  function kirimWA() {
+    const nominal = document.getElementById("nominalInput").value;
+    const bukti = document.getElementById("buktiInput").value;
+    if (!nominal || !bukti) {
+      alert("Mohon isi nominal dan link bukti transfer.");
+      return;
+    }
+
+    const pesan = `Saya ingin membeli *${produkSekarang}*.\nNominal: Rp${nominal}\nBukti: ${bukti}`;
+    const url = `https://wa.me/6289653927785?text=${encodeURIComponent(pesan)}`;
+    window.open(url, '_blank');
+    tutupModal();
+  }
+</script>
 </body>
 </html>
   
