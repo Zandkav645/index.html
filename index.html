@@ -2362,49 +2362,63 @@ nav a:hover {
   header {
     margin-left: 80px; /* dorong isi agar tidak tertutup sidebar */
   }
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-image: url('https://files.catbox.moe/0c2kht.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-    }
-    header {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 1em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 1em;
-      text-decoration: none;
-    }
-  </style>
-</head>
 <body>
-  <header>
-    <div>🍔</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="beli.html">Beli</a>
-      <a href="tentang.html">Tentang</a>
-      <a href="fun-menu.html">Fun Menu</a>
-      <a href="upload.html">Upload</a>
-    </nav>
-  </header>
-  <main style="padding: 2em;">
-    <h1>Selamat Datang di Beranda</h1>
-    <p>Ini adalah halaman utama dari website kamu.</p>
-  </main>
+  <!-- Sidebar/Menu -->
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#beli">BELI</a>
+    <a href="#tentang">TENTANG</a>
+    <a href="#fun-menu">FUN MENU</a>
+    <a href="#upload">UPLOAD</a>
+  </nav>
+
+  <!-- Halaman HOME -->
+  <section id="home">
+    <h1>Selamat Datang di ZanDKav</h1>
+    <p>Panel Bot WhatsApp Berkualitas</p>
+  </section>
+
+  <!-- Halaman BELI -->
+  <section id="beli" style="display: none;">
+    <h1>Halaman Pembelian</h1>
+    <p>Metode pembayaran, harga, dan lainnya...</p>
+  </section>
+
+  <!-- Halaman TENTANG -->
+  <section id="tentang" style="display: none;">
+    <h1>Tentang Kami</h1>
+    <p>Informasi tentang ZanDKav...</p>
+  </section>
+
+  <!-- Halaman FUN MENU -->
+  <section id="fun-menu" style="display: none;">
+    <h1>Mini Games</h1>
+    <p>Pilih permainan favoritmu!</p>
+  </section>
+
+  <!-- Halaman UPLOAD -->
+  <section id="upload" style="display: none;">
+    <h1>Upload Berkas</h1>
+    <p>Formulir upload file atau dokumen...</p>
+  </section>
+
+  <!-- Script untuk Navigasi -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('nav a');
+      const sections = document.querySelectorAll('section');
+
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href').substring(1);
+
+          sections.forEach(section => {
+            section.style.display = (section.id === target) ? 'block' : 'none';
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html> 
