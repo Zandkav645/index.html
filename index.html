@@ -2291,31 +2291,8 @@ body {
   function countClick() {
     if (!isCounting) {
       isCounting = true;
-      clickCount = 0;
-      document.getElementById("clickResult").textContent = "Klik: 0";
-      let time = 5;
-      document.getElementById("timerDisplay").textContent = "Mulai hitung waktu...";
-      const timer = setInterval(() => {
-        time--;
-        document.getElementById("timerDisplay").textContent = `Sisa waktu: ${time}s`;
-        if (time <= 0) {
-          clearInterval(timer);
-          document.getElementById("timerDisplay").textContent = "Waktu habis!";
-          isCounting = false;
-        }
-      }, 1000);
-    }
-    if (isCounting) {
-      clickCount++;
-      document.getElementById("clickResult").textContent = `Klik: ${clickCount}`;
-    }
-  }
 </script>
-    <div id="upload-page" class="page">
-  <header>
-    <div class="logo-container">
-</script>
-        
+    
 </body>
 </html>
   
