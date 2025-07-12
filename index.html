@@ -828,12 +828,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 id="modalTitle">Form Pemesanan</h2>
-            <form id="orderForm" action="https://formsubmit.co/khafa4607@gmail.com" method="POST">
-                <input type="hidden" name="_subject" id="productName">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="#">
-                
+            <form id="orderForm">
                 <div class="form-group">
                     <label for="fullName">Nama Lengkap:</label>
                     <input type="text" id="fullName" name="name" required>
@@ -887,7 +882,7 @@
                     <i class="fas fa-paper-plane"></i> <span id="submitText">Kirim Pesanan</span>
                 </button>
                 
-                <div id="successMessage" class="success-message" style="display: none;">
+                <div id="successMessage" class="success-message">
                     <i class="fas fa-check-circle"></i> Pesanan Anda telah berhasil dikirim! Kami akan menghubungi Anda segera.
                 </div>
             </form>
@@ -937,22 +932,39 @@
             // Form submission handler
             const orderForm = document.getElementById('orderForm');
             orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
                 const submitButton = document.getElementById('submitButton');
                 const submitText = document.getElementById('submitText');
+                const successMessage = document.getElementById('successMessage');
                 
                 // Show loading state
                 submitButton.disabled = true;
                 submitText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
                 
-                // You can add additional form validation here if needed
+                // Simulate form submission (replace with actual AJAX call)
+                setTimeout(() => {
+                    // Hide form and show success message
+                    orderForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form after 3 seconds
+                    setTimeout(() => {
+                        closeModal();
+                        orderForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        submitButton.disabled = false;
+                        submitText.innerHTML = 'Kirim Pesanan';
+                        orderForm.reset();
+                    }, 3000);
+                }, 1500);
             });
         });
         
         function openOrderForm(productName, productPrice) {
-            document.getElementById('productName').value = `Pesanan Baru: ${productName}`;
             document.getElementById('productDisplay').value = productName;
-            document.getElementById('priceDisplay').value = `Rp ${productPrice}`;
-            document.getElementById('modalTitle').textContent = `Pesan ${productName} - Rp ${productPrice}`;
+            document.getElementById('priceDisplay').value = productPrice === 'Tanya Harga' ? productPrice : `Rp ${productPrice}`;
+            document.getElementById('modalTitle').textContent = `Pesan ${productName}`;
             document.getElementById('orderModal').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('orderForm').reset();
