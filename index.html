@@ -20,6 +20,7 @@
             color: #333;
             overflow-x: hidden;
             padding-left: 80px;
+            transition: padding-left 0.3s ease;
         }
         
         .sidebar {
@@ -34,27 +35,52 @@
             align-items: center;
             padding-top: 20px;
             z-index: 100;
+            transition: width 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .sidebar.expanded {
+            width: 250px;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        
+        .menu-toggle {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            width: 100%;
+            padding-left: 20px;
         }
         
         .nav-item {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             color: white;
             text-decoration: none;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             width: 100%;
-            padding: 10px 0;
+            padding: 10px;
             transition: all 0.3s ease;
+            border-radius: 5px;
+            white-space: nowrap;
         }
         
         .nav-item i {
             font-size: 24px;
-            margin-bottom: 5px;
+            margin-right: 15px;
+            min-width: 24px;
         }
         
         .nav-item span {
-            font-size: 12px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .sidebar.expanded .nav-item span {
+            display: inline;
         }
         
         .nav-item:hover, .nav-item.active {
@@ -556,10 +582,36 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-left: 0;
+            }
+            
+            .sidebar {
+                width: 60px;
+            }
+            
+            .sidebar.expanded {
+                width: 250px;
+            }
+            
+            .menu-toggle {
+                padding-left: 15px;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
+        <div class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
         <a href="#home" class="nav-item active" data-page="home">
             <i class="fas fa-home"></i>
             <span>HOME</span>
@@ -571,6 +623,18 @@
         <a href="#tentang" class="nav-item" data-page="tentang">
             <i class="fas fa-info-circle"></i>
             <span>TENTANG</span>
+        </a>
+        <a href="#kontak" class="nav-item" data-page="kontak">
+            <i class="fas fa-phone-alt"></i>
+            <span>KONTAK</span>
+        </a>
+        <a href="#faq" class="nav-item" data-page="faq">
+            <i class="fas fa-question-circle"></i>
+            <span>FAQ</span>
+        </a>
+        <a href="#testimoni" class="nav-item" data-page="testimoni">
+            <i class="fas fa-star"></i>
+            <span>TESTIMONI</span>
         </a>
     </div>
     
@@ -773,40 +837,128 @@
         </div>
     </div>
     
-    <section class="testimoni-section">
-        <h2>Apa Kata Pelanggan Kami?</h2>
-        <div class="testimoni-grid">
-            <div class="testimoni-card">
-                <img src="https://files.catbox.moe/3xh47a.jpg" alt="Testimoni Pelanggan 1">
-                <p>"Panelnya keren banget! Fitur lengkap dan harganya murah. Seller juga ramah dan fast respon."</p>
-                <h4>- John Doe</h4>
+    <div id="kontak-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
             </div>
-            
-            <div class="testimoni-card">
-                <img src="https://files.catbox.moe/qbt2vc.jpg" alt="Testimoni Pelanggan 2">
-                <p>"Pertama kali beli panel disini dan sangat puas! Tidak mengecewakan sama sekali."</p>
-                <h4>- Jane Smith</h4>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Hubungi Kami</p>
             </div>
-            
-            <div class="testimoni-card">
-                <img src="https://files.catbox.moe/xcpsmw.jpg" alt="Testimoni Pelanggan 3">
-                <p>"Support 24 jam beneran aktif! Pernah ada masalah jam 2 pagi masih dibantu."</p>
-                <h4>- Robert Johnson</h4>
-            </div>
-            
-            <div class="testimoni-card">
-                <img src="https://files.catbox.moe/nn35z4.jpg" alt="Testimoni Pelanggan 4">
-                <p>"Panelnya stabil dan jarang down. Sudah beli 3 kali disini selalu puas."</p>
-                <h4>- Sarah Williams</h4>
-            </div>
-            
-            <div class="testimoni-card">
-                <img src="https://files.catbox.moe/jgzjoe.jpg" alt="Testimoni Pelanggan 5">
-                <p>"Harga murah tapi kualitas premium. Recommended banget buat yang cari panel WA!"</p>
-                <h4>- Michael Brown</h4>
+        </header>
+        
+        <div class="container">
+            <div class="about-content">
+                <h2>Kontak Kami</h2>
+                <p>Jika Anda memiliki pertanyaan atau membutuhkan bantuan, jangan ragu untuk menghubungi kami melalui salah satu cara berikut:</p>
+                
+                <div class="payment-methods" style="margin-top: 20px;">
+                    <div class="payment-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-telegram"></i>
+                        <span>Telegram: <a href="https://t.me/ZanDKavSupport">@ZanDKavSupport</a></span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email: zandkav@gmail.com</span>
+                    </div>
+                </div>
+                
+                <h2 style="margin-top: 30px;">Jam Operasional</h2>
+                <p>Kami melayani pelanggan 24/7 untuk pertanyaan dan dukungan teknis.</p>
             </div>
         </div>
-    </section>
+    </div>
+    
+    <div id="faq-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Pertanyaan Umum</p>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="about-content">
+                <h2>FAQ (Pertanyaan yang Sering Diajukan)</h2>
+                
+                <h3>1. Apa itu Panel Bot WhatsApp?</h3>
+                <p>Panel Bot WhatsApp adalah sistem yang memungkinkan Anda mengotomatisasi berbagai fungsi di WhatsApp seperti mengirim pesan otomatis, membalas pesan, mengelola grup, dan lainnya.</p>
+                
+                <h3>2. Bagaimana cara membeli panel?</h3>
+                <p>Anda bisa memilih produk yang diinginkan di halaman "Beli", lalu klik tombol "Beli Sekarang" dan ikuti petunjuknya.</p>
+                
+                <h3>3. Berapa lama proses pengiriman panel setelah pembayaran?</h3>
+                <p>Biasanya panel akan dikirim dalam waktu 5-15 menit setelah pembayaran dikonfirmasi. Jika lebih dari 1 jam belum diterima, silakan hubungi kami.</p>
+                
+                <h3>4. Apakah panel ini legal digunakan?</h3>
+                <p>Panel kami menggunakan API resmi WhatsApp Business untuk fitur-fitur tertentu. Penggunaan untuk spam atau aktivitas ilegal lainnya tidak kami dukung.</p>
+                
+                <h3>5. Bagaimana jika ada masalah teknis dengan panel?</h3>
+                <p>Kami menyediakan support 24/7 melalui WhatsApp dan Telegram. Tim teknis kami akan membantu menyelesaikan masalah Anda.</p>
+                
+                <h3>6. Apakah ada garansi untuk panel?</h3>
+                <p>Ya, kami memberikan garansi 7 hari untuk semua produk panel kami. Jika ada masalah teknis dalam periode tersebut, kami akan memperbaikinya gratis.</p>
+                
+                <h3>7. Bisakah saya menjadi reseller?</h3>
+                <p>Tentu! Kami memiliki program reseller dengan harga khusus. Silakan lihat produk "Reseller Panel" atau hubungi kami untuk info lebih lanjut.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="testimoni-page" class="page">
+        <header>
+            <div class="logo-container">
+                <img src="https://files.catbox.moe/3x01e5.jpg" alt="ZanDKav Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1>ZanDKav</h1>
+                <p class="tagline">Testimoni Pelanggan</p>
+            </div>
+        </header>
+        
+        <section class="testimoni-section">
+            <h2>Apa Kata Pelanggan Kami?</h2>
+            <div class="testimoni-grid">
+                <div class="testimoni-card">
+                    <img src="https://files.catbox.moe/3xh47a.jpg" alt="Testimoni Pelanggan 1">
+                    <p>"Panelnya keren banget! Fitur lengkap dan harganya murah. Seller juga ramah dan fast respon."</p>
+                    <h4>- John Doe</h4>
+                </div>
+                
+                <div class="testimoni-card">
+                    <img src="https://files.catbox.moe/qbt2vc.jpg" alt="Testimoni Pelanggan 2">
+                    <p>"Pertama kali beli panel disini dan sangat puas! Tidak mengecewakan sama sekali."</p>
+                    <h4>- Jane Smith</h4>
+                </div>
+                
+                <div class="testimoni-card">
+                    <img src="https://files.catbox.moe/xcpsmw.jpg" alt="Testimoni Pelanggan 3">
+                    <p>"Support 24 jam beneran aktif! Pernah ada masalah jam 2 pagi masih dibantu."</p>
+                    <h4>- Robert Johnson</h4>
+                </div>
+                
+                <div class="testimoni-card">
+                    <img src="https://files.catbox.moe/nn35z4.jpg" alt="Testimoni Pelanggan 4">
+                    <p>"Panelnya stabil dan jarang down. Sudah beli 3 kali disini selalu puas."</p>
+                    <h4>- Sarah Williams</h4>
+                </div>
+                
+                <div class="testimoni-card">
+                    <img src="https://files.catbox.moe/jgzjoe.jpg" alt="Testimoni Pelanggan 5">
+                    <p>"Harga murah tapi kualitas premium. Recommended banget buat yang cari panel WA!"</p>
+                    <h4>- Michael Brown</h4>
+                </div>
+            </div>
+        </section>
+    </div>
     
     <footer>
         <h3>ZanDKav</h3>
@@ -820,6 +972,7 @@
         
         <div class="contact-info">
             <p>Hubungi kami via WhatsApp: <a href="https://wa.me/6289653927785">+62 896-5392-7785</a></p>
+            <p>Telegram: <a href="https://t.me/ZanDKavSupport">@ZanDKavSupport</a></p>
         </div>
     </footer>
     
@@ -942,8 +1095,45 @@
                 submitButton.disabled = true;
                 submitText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
                 
-                // Simulate form submission (replace with actual AJAX call)
-                setTimeout(() => {
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('fullName').value,
+                    phone: document.getElementById('phoneNumber').value,
+                    email: document.getElementById('email').value || 'Tidak diisi',
+                    product: document.getElementById('productDisplay').value,
+                    price: document.getElementById('priceDisplay').value,
+                    payment: document.getElementById('paymentMethod').value,
+                    notes: document.getElementById('notes').value || 'Tidak ada catatan'
+                };
+                
+                // Telegram bot API
+                const botToken = '8081519323:AAGoTfh5TIC-TznGmfBYeFKNnpQDMNl-AxM';
+                const chatId = 'YOUR_CHAT_ID'; // Replace with your Telegram chat ID
+                
+                // Format message for Telegram
+                const message = `📦 *Pesanan Baru* 📦\n\n` +
+                               `👤 *Nama*: ${formData.name}\n` +
+                               `📱 *WhatsApp*: ${formData.phone}\n` +
+                               `📧 *Email*: ${formData.email}\n\n` +
+                               `🛒 *Produk*: ${formData.product}\n` +
+                               `💰 *Harga*: ${formData.price}\n` +
+                               `💳 *Metode Pembayaran*: ${formData.payment}\n\n` +
+                               `📝 *Catatan*: ${formData.notes}`;
+                
+                // Send to Telegram bot
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
                     // Hide form and show success message
                     orderForm.style.display = 'none';
                     successMessage.style.display = 'block';
@@ -957,9 +1147,27 @@
                         submitText.innerHTML = 'Kirim Pesanan';
                         orderForm.reset();
                     }, 3000);
-                }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat mengirim pesanan. Silakan coba lagi atau hubungi kami langsung.');
+                    submitButton.disabled = false;
+                    submitText.innerHTML = 'Kirim Pesanan';
+                });
             });
         });
+        
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('expanded');
+            
+            // Adjust body padding when sidebar is expanded
+            if (sidebar.classList.contains('expanded')) {
+                document.body.style.paddingLeft = '250px';
+            } else {
+                document.body.style.paddingLeft = '80px';
+            }
+        }
         
         function openOrderForm(productName, productPrice) {
             document.getElementById('productDisplay').value = productName;
